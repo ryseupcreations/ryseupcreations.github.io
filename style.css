@@ -410,7 +410,7 @@ hr {
     font-weight: 800;
     text-transform: uppercase;
     color: #FFF;
-    padding: 40px 14px;
+    padding: 65px 14px 15px 14px;
 }
 .nav > li > a:focus {
 	background: none;
