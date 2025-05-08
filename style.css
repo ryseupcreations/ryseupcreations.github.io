@@ -893,17 +893,30 @@ hr {
 
 /* Adjust navigation links for mobile */
 @media (max-width: 768px) {
+  .navbar-header .container {
+    flex-direction: column; /* Stack logo and nav links vertically */
+    align-items: center;
+  }
+
+  .navbar-toggler {
+    display: block; /* Ensure the toggle button is visible */
+  }
+
   .navbar-collapse {
-    text-align: center;
+    display: none; /* Initially hide the menu */
+  }
+
+  .navbar-collapse.show {
+    display: block; /* Show the menu when toggled */
   }
 
   .nav.navbar-nav {
-    flex-direction: column;
-    gap: 10px;
+    flex-direction: column; /* Stack nav links vertically */
+    gap: 15px;
   }
 
   .navbar-brand img {
-    max-width: 100px; /* Adjust logo size for mobile */
+    max-width: 80px; /* Adjust logo size for smaller screens */
   }
 }
 /*-----------------------------------------------------------------------------------*/
