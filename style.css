@@ -368,6 +368,9 @@ hr {
 .navbar-header {
     float: none !important
 }
+.logo {
+    padding-bottom: 20px;
+}
 .navbar .container {
     padding: 0
 }
