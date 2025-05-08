@@ -848,6 +848,25 @@ hr {
     position: absolute;
     background-color: black;
 }
+.navbar-header .container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.navbar-header .navbar-brand {
+  margin-right: 20px;
+}
+
+.navbar-header .navbar-collapse {
+  display: flex;
+  justify-content: center;
+}
+
+.navbar-header .nav.navbar-nav {
+  display: flex;
+  gap: 15px;
+}
 /*-----------------------------------------------------------------------------------*/
 /*	BUTTON
 /*-----------------------------------------------------------------------------------*/
@@ -2838,9 +2857,6 @@ a.more:after {
     font-style: normal;
     font-weight: 500;
 }
-.sidebox .post-list .meta em:before {
-    display: none
-}
 .sidebox.widget form {
     margin: 0
 }
@@ -3789,94 +3805,11 @@ input:focus:-ms-input-placeholder {
 	    margin-left: 0;
 	    margin-bottom: 30px;
 	}
-	.classic-blog .post {
-	    margin-bottom: 30px
-	}
-}
-@media (max-width: 767px) { 
-	.navbar .container,
-	.container {
-	    padding-right: 20px;
-	    padding-left: 20px;
-	}
-	[class*="col-"] {
-	    margin-bottom: 30px
-	}
-	#scrollUp {
-	    display: none !important
-	}
-	footer .inner {
-	    padding-bottom: 40px
-	}
-	.sub-footer p.pull-left,
-	.sub-footer ul.pull-right {
-	    float: none !important;
-	    text-align: center;
-	}
-	.sub-footer p {
-	    margin-bottom: 20px
-	}
-	.footer-menu li {
-	    padding: 0 5px
-	}
-	img {
-	    max-width: 100%;
-	    height: auto;
-	}
-	.tp-bullets {
-	    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)" !important;
-	    -moz-opacity: 0 !important;
-	    -khtml-opacity: 0 !important;
-	    opacity: 0 !important;
-	}
-	.tp-caption .btn-large {
-	    padding: 6px 14px 7px 14px !important;
-	    font-size: 11px;
-	}
-	.thin {
-	    width: 100%
-	}
-	#testimonials {
-	    width: 100%
-	}
-	#testimonials .tab {
-	    display: inline-block !important
-	}
-	.sidebar {
-	    margin-top: 70px;
-	    padding-left: 15px !important;
-	}
-	.navbar.basic .navbar-nav {
-	    width: 100%;
-	    margin: 0 auto;
-	    padding-left: 20px;
-	    padding-right: 20px;
-	}
-	.navbar.basic .basic-wrapper {
-	    width: 100%;
-	    padding-left: 20px;
-	    padding-right: 20px;
-	    margin: 0 auto;
-	    display: block;
-	}
-	.navbar.basic .navbar-nav > li {
-	    margin-left: 0
-	}
-	.yamm .yamm-content.row {
-	    margin-bottom: -30px
-	}
-	.about-author .author-image {
-	    display: none
-	}
-	.tab {
-	    display: block !important;
-	    margin: 0 !important;
-	}
-	.tabs-top .tab {
-	    margin-bottom: 8px !important
-	}
 	.tabs-top .etabs {
 	    margin-bottom: -8px
+	}
+	.tabs-top .tab {
+	    margin-bottom: 8px
 	}
 	.services .etabs,
 	.services.tabs .panel-container {
