@@ -1,4 +1,3 @@
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 /*
 Theme Name: Slowave - Multipurpose Responsive HTML5 Template 
 Theme URI: http://themes.iki-bir.com/slowave
@@ -369,9 +368,6 @@ hr {
 .navbar-header {
     float: none !important
 }
-.logo {
-    padding-bottom: 20px;
-}
 .navbar .container {
     padding: 0
 }
@@ -388,7 +384,7 @@ hr {
     padding-top: 30px;
 }
 .navbar-header {
-    background: #000000;
+    background: #333C45;
     padding: 0;
 }
 .navbar.black .navbar-header {
@@ -843,68 +839,6 @@ hr {
 }
 .bp50 {
     padding-bottom: 50px
-}
-.navbar.basic.default {
-    width: 100%;
-    position: absolute;
-    background-color: black;
-}
-.navbar-header .container {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
-}
-
-.navbar-brand {
-  margin-bottom: 10px;
-}
-
-.navbar-toggler {
-  border: none;
-  background: transparent;
-}
-
-.navbar-toggler-icon {
-  width: 30px;
-  height: 3px;
-  background-color: #333;
-  display: block;
-  position: relative;
-}
-
-.navbar-toggler-icon::before,
-.navbar-toggler-icon::after {
-  content: '';
-  width: 30px;
-  height: 3px;
-  background-color: #333;
-  position: absolute;
-  left: 0;
-}
-
-.navbar-toggler-icon::before {
-  top: -8px;
-}
-
-.navbar-toggler-icon::after {
-  top: 8px;
-}
-
-/* Adjust navigation links for mobile */
-@media (max-width: 768px) {
-  .navbar-collapse {
-    text-align: center;
-  }
-
-  .nav.navbar-nav {
-    flex-direction: column;
-    gap: 10px;
-  }
-
-  .navbar-brand img {
-    max-width: 100px; /* Adjust logo size for mobile */
-  }
 }
 /*-----------------------------------------------------------------------------------*/
 /*	BUTTON
@@ -2548,11 +2482,11 @@ a.more:after {
 .pagination ul > li > span {
     float: none;
     border: none;
-    color: #9b9f9f;
+    color: #9b9b9b;
     font-weight: 800;
     text-transform: uppercase;
     padding: 9px 15px;
-    border: 2px solid #9b9f9f;
+    border: 2px solid #9b9b9b;
     -webkit-border-radius: 3px;
     border-radius: 3px;
 }
@@ -2575,7 +2509,7 @@ a.more:after {
     font-weight: 800;
     text-transform: uppercase;
     padding: 5px 10px 4px;
-    border: 2px solid #9b9f9b;
+    border: 2px solid #9b9b9b;
     -webkit-border-radius: 3px;
     border-radius: 3px;
     display: inline-block;
@@ -2674,7 +2608,7 @@ a.more:after {
 }
 #comments a.reply-link {
     display: inline;
-    color: #9f9f9f9;
+    color: #9f9f9f;
 }
 #comments a.reply-link:hover {
     color: #3f8dbf
@@ -2895,6 +2829,9 @@ a.more:after {
     color: #9f9f9f;
     font-style: normal;
     font-weight: 500;
+}
+.sidebox .post-list .meta em:before {
+    display: none
 }
 .sidebox.widget form {
     margin: 0
@@ -3844,11 +3781,94 @@ input:focus:-ms-input-placeholder {
 	    margin-left: 0;
 	    margin-bottom: 30px;
 	}
-	.tabs-top .etabs {
-	    margin-bottom: -8px
+	.classic-blog .post {
+	    margin-bottom: 30px
+	}
+}
+@media (max-width: 767px) { 
+	.navbar .container,
+	.container {
+	    padding-right: 20px;
+	    padding-left: 20px;
+	}
+	[class*="col-"] {
+	    margin-bottom: 30px
+	}
+	#scrollUp {
+	    display: none !important
+	}
+	footer .inner {
+	    padding-bottom: 40px
+	}
+	.sub-footer p.pull-left,
+	.sub-footer ul.pull-right {
+	    float: none !important;
+	    text-align: center;
+	}
+	.sub-footer p {
+	    margin-bottom: 20px
+	}
+	.footer-menu li {
+	    padding: 0 5px
+	}
+	img {
+	    max-width: 100%;
+	    height: auto;
+	}
+	.tp-bullets {
+	    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)" !important;
+	    -moz-opacity: 0 !important;
+	    -khtml-opacity: 0 !important;
+	    opacity: 0 !important;
+	}
+	.tp-caption .btn-large {
+	    padding: 6px 14px 7px 14px !important;
+	    font-size: 11px;
+	}
+	.thin {
+	    width: 100%
+	}
+	#testimonials {
+	    width: 100%
+	}
+	#testimonials .tab {
+	    display: inline-block !important
+	}
+	.sidebar {
+	    margin-top: 70px;
+	    padding-left: 15px !important;
+	}
+	.navbar.basic .navbar-nav {
+	    width: 100%;
+	    margin: 0 auto;
+	    padding-left: 20px;
+	    padding-right: 20px;
+	}
+	.navbar.basic .basic-wrapper {
+	    width: 100%;
+	    padding-left: 20px;
+	    padding-right: 20px;
+	    margin: 0 auto;
+	    display: block;
+	}
+	.navbar.basic .navbar-nav > li {
+	    margin-left: 0
+	}
+	.yamm .yamm-content.row {
+	    margin-bottom: -30px
+	}
+	.about-author .author-image {
+	    display: none
+	}
+	.tab {
+	    display: block !important;
+	    margin: 0 !important;
 	}
 	.tabs-top .tab {
-	    margin-bottom: 8px
+	    margin-bottom: 8px !important
+	}
+	.tabs-top .etabs {
+	    margin-bottom: -8px
 	}
 	.services .etabs,
 	.services.tabs .panel-container {
