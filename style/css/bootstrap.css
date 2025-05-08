@@ -3875,11 +3875,11 @@ textarea.input-group-sm > .input-group-btn > .btn {
 }
 @media (min-width: 992px) {
   .navbar-nav {
-    float: right;
+    float: left;
     margin: 0;
   }
   .navbar-nav > li {
-    float: left;
+    float: right;
   }
   .navbar-nav > li > a {
     padding-top: 15px;
