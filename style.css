@@ -1,3 +1,4 @@
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 /*
 Theme Name: Slowave - Multipurpose Responsive HTML5 Template 
 Theme URI: http://themes.iki-bir.com/slowave
@@ -899,6 +900,10 @@ hr {
   .nav.navbar-nav {
     flex-direction: column;
     gap: 10px;
+  }
+
+  .navbar-brand img {
+    max-width: 100px; /* Adjust logo size for mobile */
   }
 }
 /*-----------------------------------------------------------------------------------*/
@@ -2570,7 +2575,7 @@ a.more:after {
     font-weight: 800;
     text-transform: uppercase;
     padding: 5px 10px 4px;
-    border: 2px solid #9b9b9b;
+    border: 2px solid #9b9f9b;
     -webkit-border-radius: 3px;
     border-radius: 3px;
     display: inline-block;
