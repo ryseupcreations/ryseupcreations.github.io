@@ -4139,3 +4139,52 @@ input:focus:-ms-input-placeholder {
         margin-top: 10px; /* Add some space below the logo area */
     }
 }
+/* Custom CSS for SVG icon in Services section */
+/* Add this to your style.css file */
+
+.services .tab .icon {
+  display: flex; /* Use flexbox to center the icon */
+  justify-content: center;
+  align-items: center;
+  height: 60px; /* Matches original i.icn height from the theme */
+  /* The original .icon i.icn had color #bababa, and on hover/active, it turned to #3f8dbf. */
+  /* For SVGs used with <img> tags, color is primarily controlled by the SVG file itself. */
+  /* If your SVG needs to change color on hover, you might need to use CSS filters (can be complex) */
+  /* or ensure your SVG is designed to contrast well with hover states. */
+}
+
+.services .tab .icon img.service-svg-icon {
+  width: 50px;  /* Adjust this to the desired visible width of your SVG graphic */
+  height: 50px; /* Adjust this to the desired visible height of your SVG graphic */
+  display: block; /* Ensures proper layout within the flex container */
+}
+
+/* The theme's existing CSS in style.css already handles the hover/active states for:
+   - .services .tab:hover .pin, .services .tab.active .pin (changes .pin background to #3f8dbf)
+   - .services .tab:hover h4, .services .tab.active h4 (changes h4 color to #3f8dbf)
+   - .services .tab:hover .icon i.icn, .services .tab.active .icon i.icn (changes font icon color to #3f8dbf)
+   Since you've replaced the <i> tag with an <img> tag for the SVG, the last rule for `i.icn` won't apply to your SVG.
+   If you want the SVG to change appearance on hover (e.g., color), and it's a single-color SVG,
+   you might explore CSS `filter` properties. However, this can be tricky for precise color matching.
+   For example, to try and make a black SVG appear blueish on hover (this is experimental):
+*/
+/*
+.services .tab:hover .icon img.service-svg-icon,
+.services .tab.active .icon img.service-svg-icon {
+  filter: invert(50%) sepia(100%) saturate(500%) hue-rotate(180deg) brightness(90%) contrast(91%);
+  /* This filter attempts to make the SVG the theme blue color (#3f8dbf).
+     It's experimental and might need significant tweaking or might not work well for complex SVGs.
+     It's often better if the SVG itself is designed to contrast well, or use two SVGs and swap with JS.
+*/
+/* } */
+
+/* Ensure the .pin and h4 elements change color on hover as per the theme (these rules might already exist or be similar in your style.css) */
+.services .tab:hover .pin,
+.services .tab.active .pin {
+  background-color: #3f8dbf; /* Theme blue */
+}
+
+.services .tab:hover h4,
+.services .tab.active h4 {
+  color: #3f8dbf; /* Theme blue */
+}
