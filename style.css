@@ -4143,14 +4143,13 @@ input:focus:-ms-input-placeholder {
 /* Add this to your style.css file */
 
 .services .tab .icon {
-  display: flex; /* Use flexbox to center the icon */
+  display: flex;
   justify-content: center;
   align-items: center;
-  height: 60px; /* Matches original i.icn height from the theme */
-  /* The original .icon i.icn had color #bababa, and on hover/active, it turned to #3f8dbf. */
-  /* For SVGs used with <img> tags, color is primarily controlled by the SVG file itself. */
-  /* If your SVG needs to change color on hover, you might need to use CSS filters (can be complex) */
-  /* or ensure your SVG is designed to contrast well with hover states. */
+  height: auto; /* Allow height to be determined by content or fixed value */
+  /* margin-bottom: 10px; /* Add some space below the icon */ /* This was in previous thought but might be incorrect based on current CSS */
+  /* The original theme had margin: 10px auto 0; for the icon */
+  margin: 10px auto 5px auto; /* Adjust bottom margin if needed */
 }
 
 .services .tab .icon img.service-svg-icon {
