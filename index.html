@@ -20,47 +20,7 @@
 <link href="style/type/picons.css" rel="stylesheet">
 <link href="style/type/budicons.css" rel="stylesheet">
 <style>
-  /* Custom CSS for SVG icon in Services section */
-  .services .tab .icon {
-    display: flex; /* Use flexbox to center the icon */
-    justify-content: center;
-    align-items: center;
-    height: 60px; /* Matches original i.icn height */
-    /* The original .icon i.icn had color #bababa, hover #3f8dbf */
-    /* For img SVGs, color is controlled by the SVG itself or filters */
-  }
-
-  .services .tab .icon img.service-svg-icon {
-    width: 50px;  /* Desired width of your SVG */
-    height: 50px; /* Desired height of your SVG */
-    display: block;
-  }
-
-  /* Hover/active state for SVG - using CSS filters for a color shift effect if needed */
-  /* This is an example to make it blueish, adjust or remove if your SVG handles color differently */
-  .services .tab:hover .icon img.service-svg-icon,
-  .services .tab.active .icon img.service-svg-icon {
-    /* If your SVG is single-color & you want to change it to the theme's blue on hover:
-       This is tricky with <img>. One method is CSS filters, but it's not perfect for specific colors.
-       Example: filter: invert(50%) sepia(100%) saturate(500%) hue-rotate(180deg); (adjust values)
-       Alternatively, ensure your SVG contrasts well or use two SVGs (one normal, one 'active' color) and switch with JS.
-       For simplicity, we'll assume the SVG is designed to look good on hover states or is multi-color.
-       If the SVG is mostly black or dark gray, it might look good against the blue background of the .pin on hover.
-    */
-    /* No direct color change here for <img> SVG, relies on SVG's own styling or good contrast */
-  }
-
-  /* Ensure the .pin changes color on hover as per theme */
-   .services .tab:hover .pin,
-   .services .tab.active .pin {
-    background-color: #3f8dbf; /* Theme blue */
-  }
-
-  .services .tab:hover h4,
-  .services .tab.active h4 {
-    color: #3f8dbf; /* Theme blue */
-  }
-
+ 
 </style>
 </head>
 <body class="full-layout">
