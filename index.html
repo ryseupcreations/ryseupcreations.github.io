@@ -7,7 +7,6 @@
 <meta name="author" content="">
 <link rel="shortcut icon" href="style/images/favicon.png">
 <title>Ryse Up Creations</title>
-<!-- Bootstrap core CSS -->
 <link href="style/css/bootstrap.css" rel="stylesheet">
 <link href="style/css/settings.css" rel="stylesheet">
 <link href="style/css/owl.carousel.css" rel="stylesheet">
@@ -20,48 +19,81 @@
 <link href="style/type/fontello.css" rel="stylesheet">
 <link href="style/type/picons.css" rel="stylesheet">
 <link href="style/type/budicons.css" rel="stylesheet">
-<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-<!--[if lt IE 9]>
-      <script src="style/js/html5shiv.js"></script>
-      <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
-      <![endif]-->
-    </head>
-    <body class="full-layout">
-    <div class="body-wrapper">
-      <div class="yamm navbar basic default">
-        <div class="navbar-header">
-          <div class="container">
-            <div class="basic-wrapper">
-              <a class="btn responsive-menu pull-right" data-toggle="collapse" data-target=".navbar-collapse"><i class='icon-menu-1'></i></a>
-              <a class="navbar-brand" href="index.html">
-                  <img src="style/images/rlogo.png" data-at2x="style/images/rlogo.png" alt="Ryse Up Creations Logo" style="max-height: 125px; width: auto;" />
-                  </a>
-            </div>
-            <div class="collapse navbar-collapse pull-right">
-              <ul class="nav navbar-nav">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="services.html">Services</a></li>
-                <li><a href="portfolio2.html">Gallery</a></li>
-                <li><a href="contact.html">Contact</a></li>
-              </ul>
-            </div>
+<style>
+  /* Custom CSS for SVG icon in Services section */
+  .services .tab .icon {
+    display: flex; /* Use flexbox to center the icon */
+    justify-content: center;
+    align-items: center;
+    height: 60px; /* Matches original i.icn height */
+    /* The original .icon i.icn had color #bababa, hover #3f8dbf */
+    /* For img SVGs, color is controlled by the SVG itself or filters */
+  }
+
+  .services .tab .icon img.service-svg-icon {
+    width: 50px;  /* Desired width of your SVG */
+    height: 50px; /* Desired height of your SVG */
+    display: block;
+  }
+
+  /* Hover/active state for SVG - using CSS filters for a color shift effect if needed */
+  /* This is an example to make it blueish, adjust or remove if your SVG handles color differently */
+  .services .tab:hover .icon img.service-svg-icon,
+  .services .tab.active .icon img.service-svg-icon {
+    /* If your SVG is single-color & you want to change it to the theme's blue on hover:
+       This is tricky with <img>. One method is CSS filters, but it's not perfect for specific colors.
+       Example: filter: invert(50%) sepia(100%) saturate(500%) hue-rotate(180deg); (adjust values)
+       Alternatively, ensure your SVG contrasts well or use two SVGs (one normal, one 'active' color) and switch with JS.
+       For simplicity, we'll assume the SVG is designed to look good on hover states or is multi-color.
+       If the SVG is mostly black or dark gray, it might look good against the blue background of the .pin on hover.
+    */
+    /* No direct color change here for <img> SVG, relies on SVG's own styling or good contrast */
+  }
+
+  /* Ensure the .pin changes color on hover as per theme */
+   .services .tab:hover .pin,
+   .services .tab.active .pin {
+    background-color: #3f8dbf; /* Theme blue */
+  }
+
+  .services .tab:hover h4,
+  .services .tab.active h4 {
+    color: #3f8dbf; /* Theme blue */
+  }
+
+</style>
+</head>
+<body class="full-layout">
+  <div class="body-wrapper">
+    <div class="yamm navbar basic default">
+      <div class="navbar-header">
+        <div class="container">
+          <div class="basic-wrapper">
+            <a class="btn responsive-menu pull-right" data-toggle="collapse" data-target=".navbar-collapse"><i class='icon-menu-1'></i></a>
+            <a class="navbar-brand" href="index.html">
+              <img src="style/images/rlogo.png" data-at2x="style/images/rlogo.png" alt="Ryse Up Creations Logo" style="max-height: 125px; width: auto;" />
+            </a>
+          </div>
+          <div class="collapse navbar-collapse pull-right">
+            <ul class="nav navbar-nav">
+              <li><a href="index.html">Home</a></li>
+              <li><a href="services.html">Services</a></li>
+              <li><a href="portfolio2.html">Gallery</a></li>
+              <li><a href="contact.html">Contact</a></li>
+            </ul>
           </div>
         </div>
-        </div>
       </div>
-    </body>
-  <!--/.navbar -->
-  <!--/>
-  <div class="offset"></div>
-  <div class="fullwidthbanner-container revolution">
+    </div>
+  </div><div class="offset"></div> <div class="fullwidthbanner-container revolution">
     <div class="fullwidthbanner">
       <ul>
-      	<li data-transition="fade"> <img src="style/images/art/slider-bg1.jpg" alt="" />
+        <li data-transition="fade"> <img src="style/images/art/slider-bg1.jpg" alt="" />
           <div class="caption sfb bold text-center" data-x="center" data-y="198" data-speed="900" data-start="800" data-easing="Sine.easeOut">Welcome to Ryse Up Creations!</div>
           <div class="caption sfb lite small text-center" data-x="center" data-y="258" data-speed="900" data-start="1500" data-easing="Sine.easeOut">We love creating beautiful balloon backdrops and accents for your special day, <br/> or setting up photo walls, a welcome easel, bloom bars or candy carts!</div>
           <div class="caption sfb" data-x="center" data-y="353" data-speed="900" data-start="2200" data-easing="Sine.easeOut"><a href="contact.html" class="btn btn-large">Contact Us!</a></div>
         </li>
-      	<li data-transition="fade"> <img src="style/images/art/slider-bg2.jpg" alt="" />
+        <li data-transition="fade"> <img src="style/images/art/slider-bg2.jpg" alt="" />
           <div class="caption lft" data-x="445" data-y="140" data-speed="900" data-start="1100" data-easing="Sine.easeOut"><img src="style/images/art/w1.png" alt="" /></div>
           <div class="caption lft" data-x="578" data-y="126" data-speed="900" data-start="2100" data-easing="Sine.easeOut"><img src="style/images/art/w2.png" alt="" /></div>
           <div class="caption lft" data-x="885" data-y="132" data-speed="900" data-start="3100" data-easing="Sine.easeOut"><img src="style/images/art/w3.png" alt="" /></div>
@@ -83,12 +115,7 @@
       </ul>
       <div class="tp-bannertimer tp-bottom"></div>
     </div>
-  -->
-    <!-- /.fullwidthbanner --> 
-  </div>
-  <!-- /.fullwidthbanner-container -->
-  <!---->
-  <div class="offset"></div>
+    </div>
   <div class="dark-wrapper page-title">
     <div class="container inner">
       <h1>Services</h1>
@@ -99,61 +126,42 @@
       <div class="tabs services tab-container">
         <div class="panel-container">
           <div class="tab-block" id="tab-1">
-            <h2 class="slab"><span class="colored">Creativity</span> is important for us</h2>
-            <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec ullamcorper nulla non metus auctor fringilla. Curabitur blandit tempus porttitor.</p>
-          </div>
-          <!-- /.tab-block -->
+            <h2 class="slab"><span class="colored">Balloon Backdrops</span> & Accents</h2> <p class="lead">Transform your event with stunning balloon backdrops and accent pieces. Perfect for weddings, parties, corporate events, and photo shoots. We customize designs to match your theme and color palette.</p> </div>
           <div class="tab-block" id="tab-2">
-            <h2 class="slab">We bring <span class="colored">rapid solutions</span></h2>
-            <p class="lead">Nullam id dolor id nibh ultricies vehicula ut id elit. Maecenas sed diam eget risus varius blandit sit amet non magna. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.</p>
-          </div>
-          <!-- /.tab-block -->
+            <h2 class="slab">Eye-catching <span class="colored">Photo Walls</span></h2> <p class="lead">Create memorable moments with our custom-designed photo walls. Ideal for capturing the fun at birthdays, showers, and any special celebration. Let us design a backdrop your guests will love!</p> </div>
           <div class="tab-block" id="tab-3">
-            <h2 class="slab"><span class="colored">Magic touch</span> is the key</h2>
-            <p class="lead">Cras mattis consectetur purus sit amet fermentum. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec sed odio dui. Morbi leo risus, porta ac consectetur ac.</p>
-          </div>
-          <!-- /.tab-block -->
+            <h2 class="slab">Elegant <span class="colored">Welcome Easels</span></h2> <p class="lead">Greet your guests in style with a beautifully decorated welcome easel. We can incorporate balloons, florals, and custom signage to make a stunning first impression at your event.</p> </div>
           <div class="tab-block" id="tab-4">
-            <h2 class="slab">Our designs won <span class="colored">many awards</span></h2>
-            <p class="lead">Nullam id dolor id nibh ultricies vehicula ut id elit. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Vestibulum id ligula porta felis euismod.</p>
+            <h2 class="slab">Interactive <span class="colored">Bloom Bars</span> & Sweet <span class="colored">Candy Carts</span></h2> <p class="lead">Add a unique touch with our charming bloom bars, where guests can create their own floral arrangements, or delight them with a beautifully styled candy cart. Perfect for adding a fun and interactive element.</p> </div>
           </div>
-          <!-- /.tab-block --> 
-        </div>
-        <!-- /.panel-container -->
         <ul class="etabs row">
           <li class="tab col-sm-3"><a href="#tab-1">
             <div class="pin"></div>
             <div class="root"></div>
-            <div class="icon"><i class="icon-picons-bulb icn"></i></div>
+            <div class="icon">
+              <img src="style/images/icons/your-balloon-icon.svg" alt="Balloon Backdrops Icon" class="service-svg-icon">
+            </div>
             <h4>Balloon Backdrops <br> & Accents </h4>
             </a></li>
           <li class="tab col-sm-3"><a href="#tab-2">
             <div class="pin"></div>
             <div class="root"></div>
-            <div class="icon"><i class="icon-picons-rocket icn"></i></div>
-            <h4>Photo Walls</h4>
+            <div class="icon"><i class="icon-picons-camera icn"></i></div> <h4>Photo Walls</h4>
             </a></li>
           <li class="tab col-sm-3"><a href="#tab-3">
             <div class="pin"></div>
             <div class="root"></div>
-            <div class="icon"><i class="icon-picons-lab icn"></i></div>
-            <h4>Welcome Easel</h4>
+            <div class="icon"><i class="icon-picons-easel icn"></i></div> <h4>Welcome Easel</h4>
             </a></li>
           <li class="tab col-sm-3"><a href="#tab-4">
             <div class="pin"></div>
             <div class="root"></div>
-            <div class="icon"><i class="icon-picons-award icn"></i></div>
-            <h4>Bloom Bars <br> & Candy Carts</h4>
+            <div class="icon"><i class="icon-picons-gift icn"></i></div> <h4>Bloom Bars <br> & Candy Carts</h4>
             </a></li>
         </ul>
-        <!-- /.etabs --> 
+        </div>
       </div>
-      <!-- /.tabs --> 
-      
     </div>
-    <!-- /.container --> 
-  </div>
-  <!-- /.light-wrapper -->
   <div class="black-wrapper">
     <div class="container inner">
       <div class="section-title text-center">
@@ -166,51 +174,43 @@
             <h3><a href="portfolio-post.html">Vintage Badges</a></h3>
             <span class="meta">Logo, Corporate</span> </div>
         </div>
-        <!-- /.item -->
         <div class="item">
           <figure class="icon-overlay medium icn-link"> <a href="portfolio-post2.html"><img src="style/images/art/p2.jpg" alt="" /></a></figure>
           <div class="image-caption">
             <h3><a href="portfolio-post2.html">Stationery Branding</a></h3>
             <span class="meta">Identity, Branding</span> </div>
         </div>
-        <!-- /.item -->
         <div class="item">
           <figure class="icon-overlay medium icn-link"> <a href="portfolio-post3.html"><img src="style/images/art/p3.jpg" alt="" /></a></figure>
           <div class="image-caption">
             <h3><a href="portfolio-post3.html">Bi-fold Mockup</a></h3>
             <span class="meta">Leaflet, Business</span> </div>
         </div>
-        <!-- /.item -->
         <div class="item">
           <figure class="icon-overlay medium icn-link"> <a href="portfolio-post4.html"><img src="style/images/art/p4.jpg" alt="" /></a></figure>
           <div class="image-caption">
             <h3><a href="portfolio-post4.html">Infographic Elements</a></h3>
             <span class="meta">Flat, Graphic</span> </div>
         </div>
-        <!-- /.item -->
         <div class="item">
           <figure class="icon-overlay medium icn-link"> <a href="portfolio-post.html"><img src="style/images/art/p5.jpg" alt="" /></a></figure>
           <div class="image-caption">
             <h3><a href="portfolio-post.html">Business Cards</a></h3>
             <span class="meta">Branding, Corporate</span> </div>
         </div>
-        <!-- /.item -->
         <div class="item">
           <figure class="icon-overlay medium icn-link"> <a href="portfolio-post2.html"><img src="style/images/art/p6.jpg" alt="" /></a></figure>
           <div class="image-caption">
             <h3><a href="portfolio-post2.html">Cover Disk Mockup</a></h3>
             <span class="meta">PSD, Music</span> </div>
         </div>
-        <!-- /.item -->
         <div class="item">
           <figure class="icon-overlay medium icn-link"> <a href="portfolio-post3.html"><img src="style/images/art/p7.jpg" alt="" /></a></figure>
           <div class="image-caption">
             <h3><a href="portfolio-post3.html">Gist iPhone App</a></h3>
             <span class="meta">Application, Mobile</span> </div>
         </div>
-        <!-- /.item --> 
-      </div>
-      <!-- /.owlcarousel -->
+        </div>
       <div class="divide50"></div>
       <div class="text-center"> <a class="btn btn-border-light" href="portfolio2.html">See All Work</a> </div>
     </div>
@@ -268,10 +268,7 @@
         </ul>
       </div>
     </div>
-    <!-- /.container --> 
-  </div>
-  <!-- /.testimonials -->
-  
+    </div>
   <div class="light-wrapper">
     <div class="container inner">
       <div class="section-title text-center">
@@ -287,52 +284,36 @@
               <div class="col-sm-12">
                 <div class="bm20">
                   <div class="icon"> <i class="icon-picons-desktop-preferences icn"></i> </div>
-                  <!-- /.icon -->
                   <div class="text">
                     <h5 class="upper">%100 Responsive Layout</h5>
                     <p>Nulla vitae libero, a pharetra augue. Integer posuere a ante venenatis condimentum. Donec id elit non mi porta gravida metus.</p>
                   </div>
-                  <!-- /.text --> 
-                </div>
-                <!-- /.div -->
+                  </div>
                 <div class="bm20">
                   <div class="icon"> <i class="icon-picons-support icn"></i> </div>
-                  <!-- /.icon -->
                   <div class="text">
                     <h5 class="upper">Free Support & Updates</h5>
                     <p>Nulla vitae libero, a pharetra augue. Integer posuere a ante venenatis condimentum. Donec id elit non mi porta gravida metus.</p>
                   </div>
-                  <!-- /.text --> 
-                </div>
-                <!-- /.div -->
+                  </div>
                 <div class="bm20">
                   <div class="icon"> <i class="icon-picons-drawing icn"></i> </div>
-                  <!-- /.icon -->
                   <div class="text">
                     <h5 class="upper">Pixel Perfect Design</h5>
                     <p>Nulla vitae libero, a pharetra augue. Integer posuere a ante venenatis condimentum. Donec id elit non mi porta gravida metus.</p>
                   </div>
-                  <!-- /.text --> 
-                </div>
-                <!-- /.div -->
+                  </div>
                 <div class="bm20">
                   <div class="icon"> <i class="icon-picons-window-layout-3 icn"></i> </div>
-                  <!-- /.icon -->
                   <div class="text">
                     <h5 class="upper">Rich Layout Options</h5>
                     <p>Nulla vitae libero, a pharetra augue. Integer posuere a ante venenatis condimentum. Donec id elit non mi porta gravida metus.</p>
                   </div>
-                  <!-- /.text --> 
+                  </div>
                 </div>
-                <!-- /.div --> 
               </div>
-              <!-- /.col-sm-12 --> 
             </div>
-            <!-- /.row --> 
           </div>
-          <!-- /.col-services --> 
-        </div>
-        <!-- /.col -->
         <div class="col-sm-6">
           <h3>Why Choose Slowave</h3>
           <p>Aenean lacinia bibendum nulla sed consectetur. Nulla vitae elit libero, a pharetra augue. Vestibulum id ligula porta felis euismod semper.</p>
@@ -364,28 +345,22 @@
             </div>
           </div>
         </div>
-        <!-- /.col-sm-6 --> 
-        
+        </div>
       </div>
-      <!-- /.row --> 
     </div>
-    <!-- /.container --> 
-  </div>
-  <!-- /.light-wrapper -->
-  
- <footer class="black-wrapper">
+  <footer class="black-wrapper">
   <div class="container inner">
     <div class="row">
       <div class="col-sm-4">
         <div class="widget" style="text-align: center;">
-          <img src="style/images/rlogo.png" data-at2x="style/images/rlogo@2x.png" alt="Ryse Up Creations Logo" style="max-height: 100px; width: auto; display: block; margin-left: auto; margin-right: auto;"/> 
+          <img src="style/images/rlogo.png" data-at2x="style/images/rlogo@2x.png" alt="Ryse Up Creations Logo" style="max-height: 100px; width: auto; display: block; margin-left: auto; margin-right: auto;"/>
           <div class="divide20"></div>
-          <p>Check Us Out On Instagram!</p> 
+          <p>Check Us Out On Instagram!</p>
           <div class="divide5"></div>
-          <ul class="social" style="list-style-type: none; padding-left: 0; margin-top: 5px;"> 
-            <li style="display: inline-block;"> 
+          <ul class="social" style="list-style-type: none; padding-left: 0; margin-top: 5px;">
+            <li style="display: inline-block;">
               <a href="https://www.instagram.com/ryseupcreations/">
-                <i class="icon-s-instagram" style="font-size: 36px; /* Increased icon size - adjust value as needed */"></i>
+                <i class="icon-s-instagram" style="font-size: 36px;"></i>
               </a>
             </li>
           </ul>
@@ -398,7 +373,7 @@
           <div class="divide10"></div>
           <div class="contact-info"> <i class="icon-location"></i> Albany, New York<br />
             <i class="icon-phone"></i>518.378.6429 <br />
-            <i class="icon-mail"></i> <a href="info@ryseupcreations.com">info@ryseupcreations.com</a> </div>
+            <i class="icon-mail"></i> <a href="mailto:info@ryseupcreations.com">info@ryseupcreations.com</a> </div>
         </div>
         </div>
       <div class="col-sm-4">
@@ -421,28 +396,64 @@
     </div>
   </div>
 </footer>
- <!-- /footer --> 
-  
-</div>
-<!-- /.body-wrapper --> 
-<!-- Bootstrap core JavaScript
-================================================== --> 
-<!-- Placed at the end of the document so the pages load faster --> 
-<script src="style/js/jquery.min.js"></script> 
-<script src="style/js/bootstrap.min.js"></script> 
-<script src="style/js/twitter-bootstrap-hover-dropdown.min.js"></script> 
-<script src="style/js/jquery.themepunch.plugins.min.js"></script> 
-<script src="style/js/jquery.themepunch.revolution.min.js"></script> 
-<script src="style/js/jquery.fancybox.pack.js"></script> 
-<script src="style/js/fancybox/helpers/jquery.fancybox-thumbs.js?v=1.0.2"></script> 
-<script src="style/js/fancybox/helpers/jquery.fancybox-media.js?v=1.0.0"></script> 
-<script src="style/js/jquery.isotope.min.js"></script> 
-<script src="style/js/jquery.easytabs.min.js"></script> 
-<script src="style/js/owl.carousel.min.js"></script> 
+ </div>
+<script src="style/js/jquery.min.js"></script>
+<script src="style/js/bootstrap.min.js"></script>
+<script src="style/js/twitter-bootstrap-hover-dropdown.min.js"></script>
+<script src="style/js/jquery.themepunch.plugins.min.js"></script>
+<script src="style/js/jquery.themepunch.revolution.min.js"></script>
+<script src="style/js/jquery.fancybox.pack.js"></script>
+<script src="style/js/fancybox/helpers/jquery.fancybox-thumbs.js?v=1.0.2"></script>
+<script src="style/js/fancybox/helpers/jquery.fancybox-media.js?v=1.0.0"></script>
+<script src="style/js/jquery.isotope.min.js"></script>
+<script src="style/js/jquery.easytabs.min.js"></script>
+<script src="style/js/owl.carousel.min.js"></script>
 <script src="style/js/jquery.fitvids.js"></script>
-<script src="style/js/google-code-prettify/prettify.js"></script> 
-<script src="style/js/jquery.slickforms.js"></script> 
-<script src="style/js/retina.js"></script> 
+<script src="style/js/google-code-prettify/prettify.js"></script>
+<script src="style/js/jquery.slickforms.js"></script>
+<script src="style/js/retina.js"></script>
 <script src="style/js/scripts.js"></script>
 </body>
 </html>
+```css
+/* Custom CSS for SVG icon in Services section */
+/* Add this to your style.css file or in a <style> tag in the <head> of your HTML */
+
+.services .tab .icon {
+  display: flex; /* Use flexbox to center the icon */
+  justify-content: center;
+  align-items: center;
+  height: 60px; /* Matches original i.icn height from the theme */
+  /* The original .icon i.icn had color #bababa, hover #3f8dbf */
+  /* For img SVGs, color is controlled by the SVG itself or CSS filters */
+}
+
+.services .tab .icon img.service-svg-icon {
+  width: 50px;  /* Adjust this to the desired visible width of your SVG graphic */
+  height: 50px; /* Adjust this to the desired visible height of your SVG graphic */
+  display: block; /* Ensures proper layout within the flex container */
+}
+
+/* Hover/active state styling for the tab itself */
+/* The theme already handles .pin and h4 color changes on .tab:hover and .tab.active */
+/* If your SVG is a single color and you want to try to change it with CSS filters on hover: */
+/*
+.services .tab:hover .icon img.service-svg-icon,
+.services .tab.active .icon img.service-svg-icon {
+  filter: brightness(0) saturate(100%) invert(52%) sepia(79%) saturate(437%) hue-rotate(160deg) brightness(90%) contrast(91%);
+  /* This filter attempts to make the SVG the theme blue color (#3f8dbf) */
+  /* It's experimental and might need significant tweaking or might not work well for complex SVGs. */
+  /* It's often better if the SVG itself is designed to contrast well, or use two SVGs. */
+/* }
+*/
+
+/* Ensure the .pin and h4 elements change color on hover as per the theme */
+.services .tab:hover .pin,
+.services .tab.active .pin {
+  background-color: #3f8dbf; /* Theme blue */
+}
+
+.services .tab:hover h4,
+.services .tab.active h4 {
+  color: #3f8dbf; /* Theme blue */
+}
