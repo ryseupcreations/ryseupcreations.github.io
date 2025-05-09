@@ -4154,8 +4154,8 @@ input:focus:-ms-input-placeholder {
 }
 
 .services .tab .icon img.service-svg-icon {
-  width: 50px;  /* Adjust this to the desired visible width of your SVG graphic */
-  height: 50px; /* Adjust this to the desired visible height of your SVG graphic */
+  width: 100px;  /* Adjust this to the desired visible width of your SVG graphic */
+  height: 100px; /* Adjust this to the desired visible height of your SVG graphic */
   display: block; /* Ensures proper layout within the flex container */
 }
 
