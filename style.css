@@ -4046,3 +4046,96 @@ input:focus:-ms-input-placeholder {
 	    overflow-y: scroll;
 	}
 }
+/* 1. Always hide the hamburger toggle button */
+.btn.responsive-menu {
+    display: none !important;
+}
+
+/* --- Styles for mobile navigation (screens <= 991px, where it normally collapses) --- */
+@media (max-width: 991px) {
+    /* 2. Ensure the navbar-collapse container is always visible */
+    .navbar-collapse.collapse {
+        display: block !important; /* Override Bootstrap's hiding */
+        height: auto !important; /* Override any height restrictions */
+        padding-bottom: 0;
+        overflow: visible !important; /* Ensure content isn't clipped */
+        border-top: none; /* Remove any top border it might get when collapsed */
+        box-shadow: none; /* Remove any box-shadow it might get */
+    }
+
+    /* Remove the fixed width that was for the scrollable collapsed menu */
+    .navbar.basic .navbar-nav {
+        width: 100% !important; /* Allow it to take the full width available */
+        margin: 0 auto !important; /* Reset margins */
+        padding: 0 !important; /* Reset paddings */
+        float: none !important; /* Ensure it doesn't float */
+        
+        /* Use flexbox to arrange links */
+        display: flex;
+        flex-wrap: wrap; /* Allow links to wrap to the next line if they don't fit */
+        justify-content: center; /* Center the links horizontally */
+        align-items: center; /* Align items vertically */
+    }
+
+    /* 3. Style individual navigation items and links */
+    .navbar.basic .navbar-nav > li {
+        float: none; /* Not needed with flexbox, but good to ensure */
+        display: inline-block; /* Fallback or if flex isn't primary method */
+        margin: 0 5px; /* Add a little space between links */
+    }
+
+    .navbar.basic .navbar-nav > li > a {
+        padding: 10px 8px !important; /* Adjust padding for mobile horizontal links */
+        font-size: 13px; /* Optionally reduce font size */
+        line-height: 20px; /* Adjust line height if needed */
+        color: #FFF !important; /* Assuming you want white links on the black mobile header */
+        border-bottom: none !important; /* Remove bottom border from collapsed style */
+        text-transform: uppercase; /* Keep the uppercase style from desktop if desired */
+        font-weight: 800; /* Keep the font weight from desktop if desired */
+    }
+
+    /* Override specific theme styles for collapsed menu items if they interfere */
+    .navbar .dropdown-menu:not(.yamm-dropdown-menu) li a {
+        padding: 10px 8px !important;
+        border-bottom: none !important;
+    }
+
+    /* Ensure the pull-right on navbar-collapse doesn't cause issues */
+    .navbar-collapse.pull-right {
+        float: none !important; /* Already in your theme for this breakpoint but ensure it */
+        width: 100%;
+    }
+
+    /* Reset specific styles for collapsed dropdowns if you don't want them expanded */
+    /* If you have dropdowns, you might need to adjust their mobile behavior too.
+       The current theme makes them always display: block !important;
+       If you want them to function as clickable dropdowns on mobile when links are horizontal,
+       you'd need to revert some of these YAMM menu mobile overrides for .dropdown-menu.
+       For simplicity, this example assumes main links are shown, and dropdowns might still expand fully.
+    */
+    .yamm .dropdown-menu {
+        /* Re-evaluate if you want dropdowns to behave like desktop dropdowns or stay expanded */
+        /* For example, to make them work as dropdowns again:
+        position: absolute !important;
+        display: none !important;
+        background-color: #000000 !important; // or your theme's dropdown bg
+        border-top: 2px solid #3f8dbf !important; // original border
+        */
+    }
+
+    /* If the one-page scroll styles for menu height interfere, reset them */
+    .onepage .navbar.basic .navbar-collapse .navbar-nav {
+        max-height: none !important;
+        overflow-y: visible !important;
+    }
+
+    /* Adjust positioning of the navbar content if necessary */
+    .navbar-header .container .collapse.navbar-collapse {
+        /* This is where the nav links are.
+           It's inside .navbar-header > .container in your HTML.
+           It will likely stack below the .basic-wrapper (logo area) by default.
+           The flex centering on .navbar-nav should make this look reasonable.
+        */
+        margin-top: 10px; /* Add some space below the logo area */
+    }
+}
