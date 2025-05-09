@@ -312,13 +312,18 @@
   <div class="container inner">
     <div class="row">
       <div class="col-sm-4">
-        <div class="widget"> <img src="style/images/rlogo.png" data-at2x="style/images/rlogo@2x.png" alt="Ryse Up Creations Logo" style="max-height: 125px; width: auto;"/>
+        <div class="widget" style="text-align: center;"> {/* Added text-align: center */}
+          <img src="style/images/rlogo.png" data-at2x="style/images/rlogo@2x.png" alt="Ryse Up Creations Logo" style="max-height: 125px; width: auto; display: block; margin-left: auto; margin-right: auto;"/> {/* Centered image */}
           <div class="divide20"></div>
-          <p>Check Us Out On Instagram!</p>
+          <p>Check Us Out On Instagram!</p> {/* This paragraph will now be centered */}
           <div class="divide5"></div>
-          <ul class="social">
-            <li><a href="https://www.instagram.com/ryseupcreations/"><i class="icon-s-instagram"></i></a></li>
-            </ul>
+          <ul class="social" style="list-style-type: none; padding-left: 0; margin-top: 5px;"> {/* Removed list bullets/padding, added small margin */}
+            <li style="display: inline-block;"> {/* Ensured li is inline-block for centering */}
+              <a href="https://www.instagram.com/ryseupcreations/">
+                <i class="icon-s-instagram" style="font-size: 36px; /* Increased icon size - adjust value as needed */"></i>
+              </a>
+            </li>
+          </ul>
         </div>
         </div>
       <div class="col-sm-4">
@@ -350,7 +355,7 @@
       </ul>
     </div>
   </div>
-</footer> 
+</footer>
  <!-- /footer --> 
   
 </div>
