@@ -415,45 +415,4 @@
 <script src="style/js/scripts.js"></script>
 </body>
 </html>
-```css
-/* Custom CSS for SVG icon in Services section */
-/* Add this to your style.css file or in a <style> tag in the <head> of your HTML */
 
-.services .tab .icon {
-  display: flex; /* Use flexbox to center the icon */
-  justify-content: center;
-  align-items: center;
-  height: 60px; /* Matches original i.icn height from the theme */
-  /* The original .icon i.icn had color #bababa, hover #3f8dbf */
-  /* For img SVGs, color is controlled by the SVG itself or CSS filters */
-}
-
-.services .tab .icon img.service-svg-icon {
-  width: 100px;  /* Adjust this to the desired visible width of your SVG graphic */
-  height: 100px; /* Adjust this to the desired visible height of your SVG graphic */
-  display: block; /* Ensures proper layout within the flex container */
-}
-
-/* Hover/active state styling for the tab itself */
-/* The theme already handles .pin and h4 color changes on .tab:hover and .tab.active */
-/* If your SVG is a single color and you want to try to change it with CSS filters on hover: */
-/*
-.services .tab:hover .icon img.service-svg-icon,
-.services .tab.active .icon img.service-svg-icon {
-  filter: brightness(0) saturate(100%) invert(52%) sepia(79%) saturate(437%) hue-rotate(160deg) brightness(90%) contrast(91%);
-  /* This filter attempts to make the SVG the theme blue color (#3f8dbf) */
-  /* It's experimental and might need significant tweaking or might not work well for complex SVGs. */
-  /* It's often better if the SVG itself is designed to contrast well, or use two SVGs. */
-/* }
-*/
-
-/* Ensure the .pin and h4 elements change color on hover as per the theme */
-.services .tab:hover .pin,
-.services .tab.active .pin {
-  background-color: #3f8dbf; /* Theme blue */
-}
-
-.services .tab:hover h4,
-.services .tab.active h4 {
-  color: #3f8dbf; /* Theme blue */
-}
