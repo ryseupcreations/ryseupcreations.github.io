@@ -146,6 +146,37 @@ h1.post-title {
 .upper {
     text-transform: uppercase
 }
+/* Add these styles to your style.css file */
+
+.navbar-brand img {
+  max-height: 125px; /* Adjust this value as needed. This will cap the height of the logo. */
+  height: auto;     /* Ensures the height adjusts automatically if only width is constrained by other means. */
+  width: auto;      /* Allows the width to adjust automatically to maintain the aspect ratio. */
+  margin-top: -25px; /* Example: Adjust to vertically center if padding-top on .navbar-brand is too much. */
+                    /* You might need to tweak this or the padding on .navbar-brand. */
+}
+
+/*
+   Your existing styles in style.css include:
+   .navbar-brand {
+       padding: 0;
+       padding-top: 30px;
+   }
+   If the 30px top padding is making it difficult to size the logo,
+   you might consider reducing it and using margin on the image itself
+   or adjusting the logo's max-height to fit within that padded space.
+*/
+
+/*
+   You already have styles for the fixed navbar state:
+   .navbar.basic.fixed .navbar-brand {
+       padding-top: 14px;
+   }
+   .navbar.basic.fixed .navbar-brand img {
+       height: 30px;
+   }
+   Ensure the default state styles above work well with these fixed state styles.
+*/
 .section-title {
     margin-bottom: 40px
 }
@@ -495,6 +526,12 @@ hr {
     color: #3f8dbf;
     filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
 }
+/* In style.css, find and update this existing rule */
+.navbar.basic.fixed .navbar-brand img {
+    height: 85px;   /* Adjust this value. Try 40px, 45px, or whatever looks best. */
+    width: auto;    /* Add this to maintain aspect ratio */
+}
+
 .btn.responsive-menu {
     padding: 8px 13px;
     margin: 0;
