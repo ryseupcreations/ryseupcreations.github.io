@@ -155,6 +155,78 @@ h1.post-title {
   margin-top: -25px; /* Example: Adjust to vertically center if padding-top on .navbar-brand is too much. */
                     /* You might need to tweak this or the padding on .navbar-brand. */
 }
+/* Static Hero Section */
+.hero-static-section {
+  background-image: url('style/images/art/balloon-runner.jpg'); /* CHANGE THIS IMAGE PATH */
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  color: #ffffff; /* White text, assuming a dark enough background or overlay */
+  padding: 150px 0; /* Adjust top/bottom padding as needed for height */
+  position: relative; /* For the overlay */
+  text-align: center;
+  display: flex; /* For vertical centering of content */
+  align-items: center; /* For vertical centering of content */
+  justify-content: center; /* For horizontal centering of content (though text-center also helps) */
+  min-height: 70vh; /* Give it a decent minimum height, adjust as you like */
+}
+
+/* Overlay for better text readability */
+.hero-static-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Adjust opacity (0.0 to 1.0) as needed */
+  z-index: 1;
+}
+
+.hero-static-content {
+  position: relative; /* To sit on top of the overlay */
+  z-index: 2;
+}
+
+.hero-static-content h1 {
+  font-size: 3.5rem; /* Adjust size */
+  font-weight: 800; /* Or your theme's preferred bold weight */
+  margin-bottom: 20px;
+  color: #ffffff; /* Ensure heading is white */
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.5); /* Optional text shadow for readability */
+}
+
+.hero-static-content .lead { /* Style for the paragraph text */
+  font-size: 2.5rem; /* Adjust size */
+  margin-bottom: 30px;
+  color: #f0f0f0; /* Slightly off-white, or pure white */
+}
+
+/* Adjust button styling if needed, or rely on existing .btn and .btn-large from your theme */
+.hero-static-content .btn {
+  /* You can add specific overrides here if the theme's default doesn't look right */
+}
+
+/* Responsive adjustments for smaller screens */
+@media (max-width: 768px) {
+  .hero-static-section {
+    padding: 100px 0;
+    min-height: 60vh;
+  }
+  .hero-static-content h1 {
+    font-size: 2.5rem;
+  }
+  .hero-static-content .lead {
+    font-size: 1.2rem;
+  }
+}
+.section-title .icon img {
+  display: block; /* Helps with margin auto and vertical alignment */
+  margin: 0 auto; /* Center the image if its container is wider */
+  vertical-align: middle; /* Good practice for images in line-block containers */
+  position: relative; /* Allows z-index if needed, and fine-tuning position */
+  z-index: 2; /* Ensure icon is above the lines */
+}
 
 /*
    Your existing styles in style.css include:
@@ -201,7 +273,7 @@ h1.post-title {
     border-bottom: 1px solid #dadada;
     position: absolute;
     left: 0;
-    top: 10px;
+    top: 24px;
     width: 50px;
 }
 .section-title .icon:after {
@@ -210,7 +282,7 @@ h1.post-title {
     border-bottom: 1px solid #dadada;
     position: absolute;
     right: 0;
-    top: 10px;
+    top: 24px;
     width: 50px;
 }
 .light-wrapper {
@@ -531,6 +603,7 @@ hr {
     height: 85px;   /* Adjust this value. Try 40px, 45px, or whatever looks best. */
     width: auto;    /* Add this to maintain aspect ratio */
 }
+
 
 .btn.responsive-menu {
     padding: 8px 13px;
