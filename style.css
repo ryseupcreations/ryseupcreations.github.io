@@ -274,7 +274,7 @@ h1.post-title {
     position: absolute;
     left: 0;
     top: 24px;
-    width: 50px;
+    width: 35px;
 }
 .section-title .icon:after {
     display: inline-block;
@@ -283,7 +283,7 @@ h1.post-title {
     position: absolute;
     right: 0;
     top: 24px;
-    width: 50px;
+    width: 35px;
 }
 .light-wrapper {
     background: #FFF;
