@@ -506,33 +506,22 @@ hr {
     margin: 0
 }
 /* --- Mobile Styles (example: for screens up to 768px wide) --- */
-/* --- More Specific Mobile Navigation Styles --- */
 @media (max-width: 768px) {
-    /* Target the link elements */
-    .navbar-nav > li > a {
-        font-size: 10px !important; /* Override existing font-size */
-        padding-left: 4px !important;
-        padding-right: 4px !important;
-        padding-top: 15px !important; /* Adjust vertical padding */
-        padding-bottom: 15px !important;
-        white-space: nowrap;           /* Prevent text from wrapping */
+    .navbar-nav li a {
+        font-size:18px; /* Adjust this value to make the text smaller */
+        padding-left: 6px; /* Reduce left padding */
+        padding-right: 6px; /* Reduce right padding */
     }
 
-    /* Adjust the list items */
-    .navbar-nav > li {
-        margin-left: 0 !important;   /* Remove left margins */
-        margin-right: 0 !important;  /* Remove right margins */
-    }
-
-    /* If necessary, adjust the navbar-nav itself */
     .navbar-nav {
-        /* float: none !important;  Force it to not float if that's causing issues */
-         text-align: center;       /* Center the items */
+        /* You might need to adjust this depending on your current layout */
+        /* For example, reduce margin or padding */
     }
 
-    /* If the navbar height is still an issue */
-    .navbar {
-       /* height: auto !important;  Allow height to adjust */
+    .navbar-nav li {
+        /* You might need to adjust this depending on your current layout */
+        margin-left: 0; /* Remove left margin between items if any */
+        margin-right: 0; /* Remove right margin between items if any */
     }
 }
 .navbar-nav > li {
