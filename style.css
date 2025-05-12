@@ -505,6 +505,25 @@ hr {
 .navbar-nav {
     margin: 0
 }
+/* --- Mobile Styles (example: for screens up to 768px wide) --- */
+@media (max-width: 768px) {
+    .navbar-nav li a {
+        font-size: 14px; /* Adjust this value to make the text smaller */
+        padding-left: 8px; /* Reduce left padding */
+        padding-right: 8px; /* Reduce right padding */
+    }
+
+    .navbar-nav {
+        /* You might need to adjust this depending on your current layout */
+        /* For example, reduce margin or padding */
+    }
+
+    .navbar-nav li {
+        /* You might need to adjust this depending on your current layout */
+        margin-left: 0; /* Remove left margin between items if any */
+        margin-right: 0; /* Remove right margin between items if any */
+    }
+}
 .navbar-nav > li {
     margin-left: 15px
 }
