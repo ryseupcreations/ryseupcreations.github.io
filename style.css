@@ -3248,6 +3248,7 @@ input:focus:-ms-input-placeholder {
     margin: 0;
     padding: 0;
     list-style: none;
+    font-size: 16px;
 }
 .contact-info i {
     margin-right: 7px

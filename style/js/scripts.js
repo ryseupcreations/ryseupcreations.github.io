@@ -235,6 +235,49 @@ $(document).ready(function () {
     });
 });
 /*-----------------------------------------------------------------------------------*/
+/*	FORM SUBMIT THANK YOU MESSAGE
+/*-----------------------------------------------------------------------------------*/
+document.addEventListener('DOMContentLoaded', function() {
+    const contactForm = document.getElementById('contact-form');
+    const responseMessage = document.querySelector('.response');
+
+    if (contactForm && responseMessage) {
+        contactForm.addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent the default form submission
+
+            const formData = new FormData(contactForm);
+
+            fetch(contactForm.action, {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json'
+                },
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.ok) {
+                    contactForm.style.display = 'none'; // Hide the form
+                    responseMessage.style.display = 'block'; // Show the thank you message
+
+                    // Optional: Reset the form after a delay
+                    // setTimeout(() => {
+                    //     contactForm.style.display = 'block';
+                    //     responseMessage.style.display = 'none';
+                    //     contactForm.reset();
+                    // }, 3000); // Show message for 3 seconds
+                } else {
+                    alert('An error occurred. Please try again.'); // Basic error handling
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('An error occurred. Please try again.');
+            });
+        });
+    }
+});
+/*-----------------------------------------------------------------------------------*/
 /*	ISOTOPE GRID BLOG
 /*-----------------------------------------------------------------------------------*/
 $(document).ready(function () {
