@@ -510,7 +510,7 @@ hr {
 @media (max-width: 768px) {
     /* Target the link elements */
     .navbar-nav > li > a {
-        font-size: 14px !important; /* Override existing font-size */
+        font-size: 10px !important; /* Override existing font-size */
         padding-left: 8px !important;
         padding-right: 8px !important;
         padding-top: 15px !important; /* Adjust vertical padding */
