@@ -511,8 +511,8 @@ hr {
     /* Target the link elements */
     .navbar-nav > li > a {
         font-size: 10px !important; /* Override existing font-size */
-        padding-left: 8px !important;
-        padding-right: 8px !important;
+        padding-left: 4px !important;
+        padding-right: 4px !important;
         padding-top: 15px !important; /* Adjust vertical padding */
         padding-bottom: 15px !important;
         white-space: nowrap;           /* Prevent text from wrapping */
