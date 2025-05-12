@@ -716,10 +716,10 @@ hr {
     width: 100%;
 }
 .navbar.basic.fixed .navbar-brand {
-    padding-top: 14px
+    padding-top: 25px
 }
 .navbar.basic.fixed .navbar-brand img {
-    height: 30px
+    height: 75px
 }
 .navbar.basic.fixed .navbar-nav > li > a {
     padding: 19px 10px
