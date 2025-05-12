@@ -4160,6 +4160,31 @@ input:focus:-ms-input-placeholder {
 .btn.responsive-menu {
     display: none !important;
 }
+#advantages ul {
+    list-style-position: inside; /* Key property */
+    list-style: none;
+    padding-left: 0;
+    margin-bottom: 1em;
+}
+
+#advantages li {
+    padding: 0.25em 0;
+    border-bottom: 1px solid #eee;
+}
+
+#advantages li:last-child {
+    border-bottom: none;
+}
+
+#advantages h3 {
+    margin-top: 0;
+    color: #616161;
+    font-weight: 700;
+}
+
+#advantages p.text-right {
+    color: #777;
+}
 
 /* --- Styles for mobile navigation (screens <= 991px, where it normally collapses) --- */
 @media (max-width: 991px) {
