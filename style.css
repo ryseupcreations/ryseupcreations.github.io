@@ -508,9 +508,9 @@ hr {
 /* --- Mobile Styles (example: for screens up to 768px wide) --- */
 @media (max-width: 768px) {
     .navbar-nav li a {
-        font-size: 14px; /* Adjust this value to make the text smaller */
-        padding-left: 8px; /* Reduce left padding */
-        padding-right: 8px; /* Reduce right padding */
+        font-size: 12px; /* Adjust this value to make the text smaller */
+        padding-left: 6px; /* Reduce left padding */
+        padding-right: 6px; /* Reduce right padding */
     }
 
     .navbar-nav {
