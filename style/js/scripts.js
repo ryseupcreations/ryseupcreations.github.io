@@ -214,39 +214,38 @@ $(document).ready(function () {
 /*-----------------------------------------------------------------------------------*/
 $(document).ready(function () {
     var $container = $('.items'); // Portfolio items container
-    var $filterLinks = $('.portfolio .filter li a'); // Filter links
+    var $filterLinks = $('.portfolio .filter li a'); // All filter links
 
-    var initialFilterValue;
-    var $activeFilter = $filterLinks.filter('.active'); // Find the link with .active class
+    // --- Hardcode the initial filter ---
+    var initialFilterValue = '.featured'; // Always start with items having the class "featured"
 
-    if ($activeFilter.length > 0) {
-        // If an active filter is set in HTML (e.g., your "Featured" link), use its data-filter value
-        initialFilterValue = $activeFilter.attr('data-filter');
-    } else if ($filterLinks.length > 0) {
-        // If no filter is explicitly active in HTML (e.g., you removed "All" and forgot to set another as active),
-        // make the first available filter active and use its data-filter value.
-        $activeFilter = $filterLinks.first().addClass('active'); // Make the first one active
-        initialFilterValue = $activeFilter.attr('data-filter');
+    // --- Visually update the active filter link ---
+    // Remove 'active' class from any link that might have it by default in HTML
+    $filterLinks.removeClass('active');
+    // Add 'active' class to the link that corresponds to our hardcoded filter
+    var $activeLink = $filterLinks.filter('[data-filter="' + initialFilterValue + '"]');
+    if ($activeLink.length) {
+        $activeLink.addClass('active');
     } else {
-        // Fallback if there are no filter links at all (should not happen based on your HTML)
-        initialFilterValue = '*'; // This would show all, but the logic above should prevent this.
+        // Optional: Warn if no "Featured" link exists, though filtering will still attempt '.featured'
+        console.warn('Isotope initial filter: No link found for data-filter="' + initialFilterValue + '" to set as active.');
+        // If you want to be very robust and no ".featured" link exists,
+        // you could default to the first available link or '*' here for the active class,
+        // but the filtering itself will still be for '.featured'.
+        // For simplicity, we'll assume the ".featured" link exists.
     }
 
-    // You can add this line for debugging to see what filter is being applied initially:
-    // console.log("Initial Isotope filter determined as:", initialFilterValue);
-
     $container.imagesLoaded(function () {
-        // console.log("imagesLoaded callback. Applying filter:", initialFilterValue); // Optional debug line
         $container.isotope({
             itemSelector: '.item',
             layoutMode: 'fitRows',
-            filter: initialFilterValue // Crucial line: Apply the determined initial filter
+            filter: initialFilterValue // Use the hardcoded initial filter
         });
     });
 
-    // Handle filter link clicks
+    // Handle filter link clicks (this part remains largely the same)
     $filterLinks.click(function (e) {
-        e.preventDefault(); // Prevent page jump for '#' hrefs
+        e.preventDefault(); // Prevent page jump
 
         var $this = $(this);
 
