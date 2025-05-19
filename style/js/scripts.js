@@ -213,20 +213,56 @@ $(document).ready(function () {
 /*	ISOTOPE PORTFOLIO
 /*-----------------------------------------------------------------------------------*/
 $(document).ready(function () {
-    var $container = $('.items');
+    var $container = $('.items'); // Portfolio items container
+    var $filterLinks = $('.portfolio .filter li a'); // Filter links
+
+    var initialFilterValue;
+    var $activeFilter = $filterLinks.filter('.active'); // Find the link with .active class
+
+    if ($activeFilter.length > 0) {
+        // If an active filter is set in HTML (e.g., your "Featured" link), use its data-filter value
+        initialFilterValue = $activeFilter.attr('data-filter');
+    } else if ($filterLinks.length > 0) {
+        // If no filter is explicitly active in HTML (e.g., you removed "All" and forgot to set another as active),
+        // make the first available filter active and use its data-filter value.
+        $activeFilter = $filterLinks.first().addClass('active'); // Make the first one active
+        initialFilterValue = $activeFilter.attr('data-filter');
+    } else {
+        // Fallback if there are no filter links at all (should not happen based on your HTML)
+        initialFilterValue = '*'; // This would show all, but the logic above should prevent this.
+    }
+
+    // You can add this line for debugging to see what filter is being applied initially:
+    // console.log("Initial Isotope filter determined as:", initialFilterValue);
+
     $container.imagesLoaded(function () {
+        // console.log("imagesLoaded callback. Applying filter:", initialFilterValue); // Optional debug line
         $container.isotope({
             itemSelector: '.item',
-            layoutMode: 'fitRows'
+            layoutMode: 'fitRows',
+            filter: initialFilterValue // Crucial line: Apply the determined initial filter
         });
     });
 
-    $('.portfolio .filter li a').click(function () {
+    // Handle filter link clicks
+    $filterLinks.click(function (e) {
+        e.preventDefault(); // Prevent page jump for '#' hrefs
 
-        $('.portfolio .filter li a').removeClass('active');
-        $(this).addClass('active');
+        var $this = $(this);
 
-        var selector = $(this).attr('data-filter');
+        // Do nothing if the clicked link is already active
+        if ($this.hasClass('active')) {
+            return false;
+        }
+
+        // Remove .active class from all filter links and add to the clicked one
+        $filterLinks.removeClass('active');
+        $this.addClass('active');
+
+        // Get the filter selector from data-filter attribute
+        var selector = $this.attr('data-filter');
+
+        // Apply the filter to the Isotope container
         $container.isotope({
             filter: selector
         });
