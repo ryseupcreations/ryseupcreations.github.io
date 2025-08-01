@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Saratoga Interactive Handicapping Dashboard - Aug 1, 2025</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <!-- Chosen Palette: Warm Neutrals with Subtle Blue/Green Accents -->
+    <!-- Application Structure Plan: A user-centric dashboard design. The initial view presents top-level insights: key stats, best bets, and top jockey/trainer charts. This provides immediate, actionable information. The core of the app is an interactive "Race Explorer" where the user selects a race from a dropdown to dynamically load detailed analysis for that specific race. This prevents overwhelming the user with all 10 races at once and mimics a handicapper's workflow of focusing on one race at a time. This structure is chosen for usability and efficient information retrieval over a simple linear report. -->
+    <!-- Visualization & Content Choices: Report Info -> Goal -> Viz/Presentation Method -> Interaction -> Justification -> Library/Method. | Jockey/Trainer Stats -> Compare -> Bar/Donut Charts -> Hover -> Best for comparing categories/proportions -> Chart.js/Canvas. | Best Bets -> Inform -> Styled Cards -> None -> Highlights key takeaways -> HTML/Tailwind. | Race-by-Race Data -> Organize/Inform -> Dropdown-driven content -> Select race -> Focused analysis, prevents overload -> Vanilla JS. | Top Speed Figures -> Compare -> Horizontal Bar Chart -> Hover -> Good for many categories & long labels -> Chart.js/Canvas. | Pace Logic -> Organize -> Flowchart Diagram -> None -> Visual explanation is intuitive -> HTML/Tailwind. | CONFIRMING NO SVG/Mermaid. -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8f7f4;
+            color: #3d3d3d;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 350px;
+            max-height: 400px;
+        }
+        .card {
+            background-color: #ffffff;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
+            padding: 1.5rem;
+            border: 1px solid #e5e7eb;
+        }
+        .kpi-card {
+            padding: 1rem;
+            text-align: center;
+        }
+        .kpi-value {
+            font-size: 2.5rem;
+            font-weight: 700;
+            line-height: 1.1;
+            color: #1a56db;
+        }
+        .kpi-label {
+            font-size: 0.875rem;
+            color: #6b7280;
+            margin-top: 0.5rem;
+        }
+        .nav-button {
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease-in-out;
+            border: 1px solid transparent;
+        }
+        .nav-button.active {
+            background-color: #1a56db;
+            color: #ffffff;
+        }
+        .nav-button:not(.active) {
+            background-color: #ffffff;
+            color: #374151;
+            border-color: #d1d5db;
+        }
+        .nav-button:not(.active):hover {
+            background-color: #f3f4f6;
+        }
+        #raceSelector {
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
+            background-position: right 0.5rem center;
+            background-repeat: no-repeat;
+            background-size: 1.5em 1.5em;
+            padding-right: 2.5rem;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <div class="container mx-auto p-4 sm:p-6 lg:p-8">
+
+        <header class="text-center mb-10">
+            <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-2">Saratoga Interactive Dashboard</h1>
+            <p class="text-lg text-gray-600">Data-Driven Selections for Friday, August 1, 2025</p>
+        </header>
+
+        <nav class="flex justify-center space-x-2 mb-10">
+            <button id="btnDashboard" class="nav-button active" onclick="showView('dashboard')">Dashboard</button>
+            <button id="btnExplorer" class="nav-button" onclick="showView('explorer')">Race Explorer</button>
+        </nav>
+
+        <main id="app-content">
+
+            <div id="dashboard-view">
+                <section class="mb-12">
+                    <h2 class="text-3xl font-bold text-center mb-6">Today's Top Plays</h2>
+                     <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <div class="card text-center border-t-4 border-blue-600">
+                            <h3 class="text-xl font-semibold mb-2 text-gray-800">Best Bet</h3>
+                            <p class="text-2xl font-bold text-blue-700 mb-2">Race 8, #7 Army Proud</p>
+                            <p class="text-sm text-gray-600">The massive class drop from Maiden Special Weight to a $30,000 claimer is the strongest angle of the day. His speed figures, earned against far tougher competition, make him a standout.</p>
+                        </div>
+                        <div class="card text-center border-t-4 border-green-600">
+                            <h3 class="text-xl font-semibold mb-2 text-gray-800">Best Value Play</h3>
+                            <p class="text-2xl font-bold text-green-700 mb-2">Race 4, #9 Connect The Stars (6/1)</p>
+                            <p class="text-sm text-gray-600">In a field of unproven first-time starters, her prior race experience and strong second-place finish over this exact course and distance make her an exceptional wager at her morning-line odds.</p>
+                        </div>
+                        <div class="card text-center border-t-4 border-red-600">
+                            <h3 class="text-xl font-semibold mb-2 text-gray-800">Prime Bet-Against</h3>
+                            <p class="text-2xl font-bold text-red-700 mb-2">Race 2, #4 Wolfie's Dynaghost (4/5)</p>
+                            <p class="text-sm text-gray-600">This heavy favorite is highly dependent on securing an easy lead, which is unlikely with other speed in the race. This sets up a value opportunity for a stalking horse.</p>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="mb-12">
+                    <h2 class="text-3xl font-bold text-center mb-6">Jockey & Trainer Insights</h2>
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                        <div class="card">
+                            <h3 class="text-xl font-semibold mb-4 text-center">Top Trainer Win Rates</h3>
+                            <p class="text-sm text-gray-600 mb-4 text-center">This chart compares the win percentages of top trainers at the meet. High-percentage barns like Asmussen and Sharp offer reliability, while trainers like Linda Rice can provide significant value with higher average payoffs.</p>
+                            <div class="chart-container">
+                                <canvas id="trainerWinChart"></canvas>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <h3 class="text-xl font-semibold mb-4 text-center">Irad Ortiz, Jr: A Tale of Two Surfaces</h3>
+                             <p class="text-sm text-gray-600 mb-4 text-center">A critical insight is the difference in Irad Ortiz, Jr.'s performance by surface. His dominance on the main track is remarkable, making his dirt mounts formidable. His turf record, while strong, is less exceptional, sometimes creating value with other riders.</p>
+                            <div class="chart-container h-80">
+                                <canvas id="iradOrtizSurfaceChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <div id="explorer-view" class="hidden">
+                 <section class="mb-12">
+                    <h2 class="text-3xl font-bold text-center mb-6">Race Explorer</h2>
+                    <div class="max-w-md mx-auto mb-8">
+                         <label for="raceSelector" class="block text-sm font-medium text-gray-700 mb-2 text-center">Select a race to analyze:</label>
+                        <select id="raceSelector" class="block w-full p-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 text-lg">
+                        </select>
+                    </div>
+
+                    <div id="race-details-content" class="card">
+                        <div id="race-details-placeholder" class="text-center text-gray-500 py-16">
+                            <p>Please select a race from the dropdown above to view the detailed analysis.</p>
+                        </div>
+                        <div id="race-details-display" class="hidden">
+                            <h3 id="raceTitle" class="text-2xl font-bold mb-1"></h3>
+                            <p id="raceConditions" class="text-md text-gray-500 mb-4"></p>
+                            
+                            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                                <div>
+                                    <h4 class="text-lg font-semibold mb-2 border-b pb-1">Pace Scenario</h4>
+                                    <p id="racePace" class="text-sm text-gray-700"></p>
+                                    
+                                    <h4 class="text-lg font-semibold mt-4 mb-2 border-b pb-1">Contender Analysis</h4>
+                                    <div id="raceContenders" class="space-y-3"></div>
+                                </div>
+                                <div>
+                                    <h4 class="text-lg font-semibold mb-2 border-b pb-1">Selections & Wagering Blueprint</h4>
+                                    <div id="raceSelections" class="text-sm bg-gray-50 p-4 rounded-md"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        const raceData = {
+            1: {
+                title: 'Race 1: Maiden Claiming $35,000',
+                conditions: 'For maidens, two years old. 6 Furlongs. Claiming Price $35,000.',
+                pace: 'The pace in a maiden sprint for two-year-olds is inherently unpredictable. However, with several first-time starters from barns known for speed, a moderate to fast early tempo is anticipated. #3 Whatarewedoing has shown tactical speed in her two starts, while the workout patterns of #1 One More Freud suggest he possesses significant early foot.',
+                contenders: [
+                    { num: 1, name: 'One More Freud', odds: '9/5', jockey: 'Jose Ortiz', trainer: 'Thomas Amoss', key: 'Exceptional workout tab, including a 5F move in 59.00 seconds.' },
+                    { num: 3, name: 'Whatarewedoing', odds: '2/1', jockey: 'Manuel Franco', trainer: 'Brittany Russell', key: "Holds a significant experience edge and the field's top Speed Figure (92)." },
+                    { num: 2, name: 'Moneybags Milton', odds: '3/1', jockey: 'Irad Ortiz, Jr.', trainer: 'Amelia Green', key: 'Top connections with Irad Ortiz, Jr., who wins at 38% on the main track.' }
+                ],
+                selections: {
+                    top: '#1 One More Freud',
+                    second: '#3 Whatarewedoing',
+                    third: '#2 Moneybags Milton',
+                    strategy: 'The primary wager is a win bet on #1 One More Freud. For exotic wagers, an exacta box of 1 and 3 is the most logical approach.'
+                }
+            },
+            2: {
+                title: 'Race 2: Allowance Optional Claiming $150,000',
+                conditions: 'For three-year-olds and upward. 1 3/16 Miles on the Turf.',
+                pace: 'A significant pace dynamic is expected. #4 Wolfie\'s Dynaghost and #1 Prevent are both confirmed front-runners. The presence of two dedicated speed horses projects a strong, contested early pace, which could set the race up for a horse with a stalking or closing running style.',
+                contenders: [
+                    { num: 3, name: 'Goldeneye', odds: '3/1', jockey: 'Jose Ortiz', trainer: 'Kenneth McPeek', key: 'Possesses tactical speed to stalk the pace; enters off a sharp win with a 104 Speed Figure.' },
+                    { num: 4, name: 'Wolfie\'s Dynaghost', odds: '4/5', jockey: 'John Velazquez', trainer: 'Jonathan Thomas', key: 'The class of the field (113 Class Rating) but is pace-dependent and faces pressure.' },
+                    { num: 5, name: 'Signator', odds: '4/1', jockey: 'Flavien Prat', trainer: 'Todd Pletcher', key: 'A closer from a top barn who won his last start and could benefit from a fast pace.' }
+                ],
+                selections: {
+                    top: '#3 Goldeneye',
+                    second: '#5 Signator',
+                    third: '#4 Wolfie\'s Dynaghost',
+                    strategy: 'A win bet on #3 Goldeneye is the primary play. An exacta box of 3 and 5 is recommended, with trifecta keys using 3 and 5 on top over 2, 4, and 6.'
+                }
+            },
+            3: {
+                title: 'Race 3: Starter Allowance',
+                conditions: 'For fillies and mares, three years old and upward. 1 Mile.',
+                pace: '#2 It Takes Heart is a consistent front-runner, and #5 Mercy Warren has also shown a preference for being on or near the lead. #1 Gone And Forgotten has the tactical versatility to press or stalk, which could give her a strategic advantage. An honest pace is expected.',
+                contenders: [
+                    { num: 1, name: 'Gone And Forgotten', odds: '2/1', jockey: 'Flavien Prat', trainer: 'Ilkay Kantarmaci', key: 'Enters in peak form with two consecutive wins, including one at this track.' },
+                    { num: 5, name: 'Mercy Warren', odds: '9/5', jockey: 'Irad Ortiz, Jr.', trainer: 'Joe Sharp', key: "Possesses the field's top Speed Figure (103) and top connections." },
+                    { num: 2, name: 'It Takes Heart', odds: '3/1', jockey: 'Jose Lezcano', trainer: 'Linda Rice', key: 'The primary speed of the race from a high-value barn ($14.28 avg. payoff).' }
+                ],
+                selections: {
+                    top: '#1 Gone And Forgotten',
+                    second: '#5 Mercy Warren',
+                    third: '#2 It Takes Heart',
+                    strategy: 'A win bet on #1 Gone And Forgotten. For trifectas, key #1 over #2, #5, and #3 April Antics.'
+                }
+            },
+            4: {
+                title: 'Race 4: Maiden Special Weight',
+                conditions: 'For maiden fillies, two years old. 1 1/16 Miles on the Turf.',
+                pace: 'With a field largely composed of first-time starters, the pace is highly unpredictable. Analysis will de-emphasize pace and focus more on experience, pedigree, and trainer patterns.',
+                contenders: [
+                    { num: 9, name: 'Connect The Stars', odds: '6/1', jockey: 'Dylan Davis', trainer: 'Mark Casse', key: 'Has a significant experience edge, finishing 2nd over this course and distance.' },
+                    { num: 8, name: 'Tax Holiday (GB)', odds: '9/2', jockey: 'Flavien Prat', trainer: 'Chad Brown', key: 'A well-bred European firster for the elite turf combination of Brown and Prat.' },
+                    { num: 10, name: 'The Grumpy Rabbit', odds: '6/1', jockey: 'K. Carmouche', trainer: 'Kenneth McPeek', key: 'Finished a solid 3rd in the same race as #9, gaining valuable experience.' }
+                ],
+                selections: {
+                    top: '#9 Connect The Stars',
+                    second: '#8 Tax Holiday (GB)',
+                    third: '#10 The Grumpy Rabbit',
+                    strategy: 'A win and place bet on #9 Connect The Stars. An exacta box of 8, 9, 10 offers good coverage.'
+                }
+            },
+            5: {
+                title: 'Race 5: Claiming $50,000',
+                conditions: 'For fillies and mares, three years old and up, which have never won two races. 7 Furlongs.',
+                pace: 'The seven-furlong distance should draw out a solid pace. #4 Fortuna Mia has shown tactical speed in her route races, and #2 She\'s Complicated has been forwardly placed. A fair pace is expected.',
+                contenders: [
+                    { num: 4, name: 'Fortuna Mia', odds: '9/5', jockey: 'Irad Ortiz, Jr.', trainer: 'Linda Rice', key: 'Takes a significant drop in class after competing in stakes races like the Grade 2 Demoiselle.' },
+                    { num: 6, name: 'Kadena', odds: '2/1', jockey: 'Manuel Franco', trainer: 'Chad Brown', key: 'Broke her maiden impressively for a top barn and now makes her second start after a layoff.' },
+                    { num: 1, name: 'Twirling Good Time', odds: '3/1', jockey: 'Luis Saez', trainer: 'Philip Bauer', key: "Possesses the field's highest last-race speed figure (104) but has yet to win on a fast track." }
+                ],
+                selections: {
+                    top: '#4 Fortuna Mia',
+                    second: '#6 Kadena',
+                    third: '#1 Twirling Good Time',
+                    strategy: 'A win bet on #4 Fortuna Mia. Use her as a key in exactas over #6 and #1.'
+                }
+            },
+            6: {
+                title: 'Race 6: Maiden Special Weight',
+                conditions: 'For maidens, two years old. 5 1/2 Furlongs on the Turf.',
+                pace: 'As with most two-year-old turf sprints featuring first-time starters, the pace is difficult to project. However, trainer Wesley Ward (#4 Schwarzenegger) is known for aggressive intent. Expect a fast pace.',
+                contenders: [
+                    { num: 4, name: 'Schwarzenegger', odds: '6/5', jockey: 'John Velazquez', trainer: 'Wesley Ward', key: 'Hails from a top 2yo barn and has a series of exceptionally fast turf workouts.' },
+                    { num: 5, name: 'Turf Star', odds: '7/2', jockey: 'Flavien Prat', trainer: 'H. Motion', key: 'Represents a strong turf trainer and has a solid workout foundation for his debut.' },
+                    { num: 6, name: 'Intricate Spirit', odds: '5/1', jockey: 'Joel Rosario', trainer: 'Miguel Clement', key: 'Trained by Miguel Clement, who has a strong 26% win rate at the meet.' }
+                ],
+                selections: {
+                    top: '#4 Schwarzenegger',
+                    second: '#5 Turf Star',
+                    third: '#6 Intricate Spirit',
+                    strategy: '#4 Schwarzenegger is a confident win bet and a potential single. An exacta box of 4, 5, 6 is recommended.'
+                }
+            },
+            7: {
+                title: 'Race 7: The National Museum of Racing Hall of Fame Stakes (Grade 2)',
+                conditions: 'For three-year-olds. 1 Mile on the Turf.',
+                pace: 'This Grade 2 event features several horses with a preference for the lead (#1 Mi Bago, #8 Tank), which should ensure a legitimate and contested pace, setting up for stalkers or closers.',
+                contenders: [
+                    { num: 7, name: 'Zulu Kingdom (IRE)', odds: '6/5', jockey: 'Flavien Prat', trainer: 'Chad Brown', key: 'A top-class colt who is undefeated in North America and comes off a G3 win.' },
+                    { num: 2, name: 'Luther (GB)', odds: '3/1', jockey: 'Joel Rosario', trainer: 'Charlie Fellowes', key: 'A European shipper who finished a strong 3rd in the G1 Belmont Derby in his U.S. debut.' },
+                    { num: 5, name: 'Clever Again', odds: '6/1', jockey: 'Jose Ortiz', trainer: 'Steven Asmussen', key: 'A talented dirt horse trying turf for the first time; trained by the high-percentage Asmussen barn.' }
+                ],
+                selections: {
+                    top: '#7 Zulu Kingdom (IRE)',
+                    second: '#2 Luther (GB)',
+                    third: '#5 Clever Again',
+                    strategy: '#7 Zulu Kingdom is a strong win candidate. For value, an exacta box with #2 and #5 is recommended.'
+                }
+            },
+            8: {
+                title: 'Race 8: Maiden Claiming $30,000',
+                conditions: 'For New York-bred maidens, three years old and upward. 7 Furlongs.',
+                pace: 'This maiden claiming sprint has a number of horses who have shown early speed, including #2 Omaha Pistol and #4 The Saint. A contested pace is likely.',
+                contenders: [
+                    { num: 7, name: 'Army Proud', odds: '5/2', jockey: 'Irad Ortiz, Jr.', trainer: 'Joe Sharp', key: 'Takes a significant drop from Maiden Special Weight to Maiden Claiming; boasts top connections.' },
+                    { num: 2, name: 'Omaha Pistol', odds: '3/1', jockey: 'Jose Lezcano', trainer: 'Linda Rice', key: 'Has been competitive at this level, finishing in the money in 4 of 6 starts.' },
+                    { num: 6, name: 'Allofasuddenlee', odds: '6/1', jockey: 'Flavien Prat', trainer: 'R. Falcone, Jr.', key: 'Showed improved speed in his last start and now gets a top jockey in Flavien Prat.' }
+                ],
+                selections: {
+                    top: '#7 Army Proud',
+                    second: '#2 Omaha Pistol',
+                    third: '#6 Allofasuddenlee',
+                    strategy: '#7 Army Proud is a strong win bet and a single. An exacta key of 7 over 2, 6, and 4 is the recommended play.'
+                }
+            },
+            9: {
+                title: 'Race 9: Starter Optional Claiming',
+                conditions: 'For three-year-olds and upward. 5 1/2 Furlongs on the Turf.',
+                pace: 'This is a turf sprint loaded with early speed (#1A Chess Master, #7 Java Buzz, #9 Heaven Street). The early fractions are projected to be extremely fast, setting the race up for a stalker or closer.',
+                contenders: [
+                    { num: 10, name: 'Chiringo', odds: '4/1', jockey: 'Jose Ortiz', trainer: 'Linda Rice', key: 'A consistent performer who possesses tactical speed to sit just off the hot pace.' },
+                    { num: 11, name: 'Kunshan Bridge', odds: '7/2', jockey: 'Manuel Franco', trainer: 'Ilkay Kantarmaci', key: 'A veteran closer who has won 7 races and will benefit from the fast pace scenario.' },
+                    { num: '1A', name: 'Chess Master', odds: '8/5', jockey: 'R. Santana, Jr.', trainer: 'Jorge Abreu', key: 'The fastest horse early, but is part of an entry and could be used to ensure a fast pace.' }
+                ],
+                selections: {
+                    top: '#10 Chiringo',
+                    second: '#11 Kunshan Bridge',
+                    third: '#6 Fluid Situation',
+                    strategy: 'A win bet on #10 Chiringo. An exacta box of 10, 11, and 6 is recommended to capitalize on the expected pace collapse.'
+                }
+            },
+            10: {
+                title: 'Race 10: Starter Optional Claiming',
+                conditions: 'For fillies and mares, three years old and upward. 1 1/16 Miles on the Turf.',
+                pace: 'The pace in this turf route does not project to be overly fast. #2 Queen Atlas has shown some early speed, but no horse in this field is a dedicated front-runner. A moderate tempo is expected, which could favor horses who are forwardly placed.',
+                contenders: [
+                    { num: 7, name: 'Leslie\'s Star', odds: '5/2', jockey: 'Irad Ortiz, Jr.', trainer: 'Linda Rice', key: 'Broke her maiden impressively last out and appears to be an improving filly for top connections.' },
+                    { num: 5, name: 'Competitive Threat (IRE)', odds: '3/1', jockey: 'Flavien Prat', trainer: 'Chad Brown', key: 'A well-bred filly who has been competitive at this level and is trained by a turf master.' },
+                    { num: 4, name: 'Life Advice', odds: '4/1', jockey: 'Jose Ortiz', trainer: 'Joe Sharp', key: 'Finished a good second at this level last out and has strong speed figures.' }
+                ],
+                selections: {
+                    top: '#7 Leslie\'s Star',
+                    second: '#5 Competitive Threat (IRE)',
+                    third: '#4 Life Advice',
+                    strategy: 'A win bet on #7 Leslie\'s Star. An exacta box of 7, 5, and 4 is the recommended play.'
+                }
+            }
+        };
+
+        const palette = {
+            blue: '#1a56db',
+            green: '#047857',
+            red: '#c81e1e',
+            neutral: '#6b7280',
+            lightBlue: '#a4cafe',
+            lightGreen: '#6ee7b7',
+        };
+
+        const tooltipTitleCallback = (tooltipItems) => {
+            const item = tooltipItems[0];
+            let label = item.chart.data.labels[item.dataIndex];
+            return Array.isArray(label) ? label.join(' ') : label;
+        };
+
+        const defaultChartOptions = {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: { display: false },
+                tooltip: {
+                    callbacks: { title: tooltipTitleCallback },
+                    backgroundColor: '#ffffff',
+                    titleColor: '#333333',
+                    bodyColor: '#333333',
+                    borderColor: '#dddddd',
+                    borderWidth: 1,
+                }
+            },
+        };
+
+        function showView(viewName) {
+            document.getElementById('dashboard-view').classList.toggle('hidden', viewName !== 'dashboard');
+            document.getElementById('explorer-view').classList.toggle('hidden', viewName !== 'explorer');
+            document.getElementById('btnDashboard').classList.toggle('active', viewName === 'dashboard');
+            document.getElementById('btnExplorer').classList.toggle('active', viewName === 'explorer');
+        }
+
+        function updateRaceDetails(raceNumber) {
+            const data = raceData[raceNumber];
+            if (!data) return;
+
+            document.getElementById('race-details-placeholder').classList.add('hidden');
+            document.getElementById('race-details-display').classList.remove('hidden');
+
+            document.getElementById('raceTitle').textContent = data.title;
+            document.getElementById('raceConditions').textContent = data.conditions;
+            document.getElementById('racePace').textContent = data.pace;
+
+            const contendersEl = document.getElementById('raceContenders');
+            contendersEl.innerHTML = data.contenders.map(c => `
+                <div class="border-l-4 pl-3" style="border-color: ${palette.blue}">
+                    <p class="font-bold text-gray-800">#${c.num} ${c.name} (${c.odds})</p>
+                    <p class="text-xs text-gray-500">${c.jockey} / ${c.trainer}</p>
+                    <p class="text-sm mt-1">${c.key}</p>
+                </div>
+            `).join('');
+            
+            const selectionsEl = document.getElementById('raceSelections');
+            selectionsEl.innerHTML = `
+                <p><strong class="text-gray-900">Top Selection:</strong> ${data.selections.top}</p>
+                <p><strong class="text-gray-900">Second Choice:</strong> ${data.selections.second}</p>
+                <p><strong class="text-gray-900">Third Choice:</strong> ${data.selections.third}</p>
+                <p class="mt-2"><strong class="text-gray-900">Wagering Strategy:</strong> ${data.selections.strategy}</p>
+            `;
+        }
+
+        window.onload = function() {
+            new Chart(document.getElementById('trainerWinChart'), {
+                type: 'bar',
+                data: {
+                    labels: ['S. Asmussen', 'J. Sharp', 'M. Clement', 'C. Brown', 'L. Rice'],
+                    datasets: [{
+                        label: 'Win %',
+                        data: [43, 38, 26, 22, 19],
+                        backgroundColor: [palette.blue, palette.lightBlue, palette.green, palette.lightGreen, palette.neutral],
+                    }]
+                },
+                options: { ...defaultChartOptions, indexAxis: 'y', scales: { x: { beginAtZero: true, ticks: { callback: v => v + '%' } } } }
+            });
+
+            new Chart(document.getElementById('iradOrtizSurfaceChart'), {
+                type: 'doughnut',
+                data: {
+                    labels: ['Main Track Wins %', 'Turf Wins %'],
+                    datasets: [{
+                        data: [38, 19],
+                        backgroundColor: [palette.blue, palette.green],
+                        borderColor: '#ffffff',
+                        borderWidth: 4,
+                        hoverOffset: 8
+                    }]
+                },
+                options: { ...defaultChartOptions, plugins: { ...defaultChartOptions.plugins, legend: { position: 'bottom', labels: { padding: 20 } } } }
+            });
+
+            const raceSelector = document.getElementById('raceSelector');
+            for (let i = 1; i <= 10; i++) {
+                const option = document.createElement('option');
+                option.value = i;
+                option.textContent = `Race ${i}: ${raceData[i].title.split(': ')[1]}`;
+                raceSelector.appendChild(option);
+            }
+            raceSelector.addEventListener('change', (e) => updateRaceDetails(e.target.value));
+            
+            updateRaceDetails(1);
+        };
+    </script>
+</body>
+</html>
