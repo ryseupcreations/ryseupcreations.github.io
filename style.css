@@ -4342,3 +4342,43 @@ input:focus:-ms-input-placeholder {
 .services .tab.active h4 {
   color: #3f8dbf; /* Theme blue */
 }
+
+/*-----------------------------------------------------------------------------------*/
+/*	DYNAMIC & RESPONSIVE MENU IMAGES (MOBILE & SHRINKING SCREENS)
+/*-----------------------------------------------------------------------------------*/
+.tab-block {
+    text-align: center;
+    width: 100%;
+}
+
+.tab-block img,
+.tab-block-icon {
+    max-width: 100% !important;
+    height: auto !important;
+    display: block;
+    margin: 0 auto;
+    border-radius: 6px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+}
+
+@media (max-width: 767px) {
+    #pricing .etabs {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 6px;
+    }
+    #pricing .etabs .tab {
+        margin: 2px;
+        flex: 1 1 auto;
+    }
+    #pricing .etabs .tab a {
+        padding: 8px 12px;
+        font-size: 11px;
+        text-align: center;
+    }
+    .tab-block img,
+    .tab-block-icon {
+        width: 100%;
+    }
+}
